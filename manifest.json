@@ -7,7 +7,7 @@
   "host_permissions": ["https://www.youtube.com/*"],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Toggle Extension"
+    "default_title": "Toggle Autodub"
   },
   "content_scripts": [
     {
