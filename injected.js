@@ -13,6 +13,7 @@ function determineType(){
 
 function checkIsVideoLoaded(){
 	let type= determineType();
+	let trackMainDetails;
 	if(type==='video'){
 		const player= document.getElementById('movie_player');
 		let videoData=player.getVideoData();
@@ -22,10 +23,15 @@ function checkIsVideoLoaded(){
 				let currentAudioTrack=player.getAudioTrack();
 				console.log('current Audio', currentAudioTrack);
 				let originalAudioTrack=availableAudioTracks.filter(track=>{
-					return track['H8']['name'].toLowerCase().includes('original')
+					for(let k in track){
+						if(typeof track[k]==='object' && (track[k]['name']!=null && track[k]['name']!=undefined)){
+							trackMainDetails=k;
+							return track[k]['name'].toLowerCase().includes('original');
+						}
+					}
 				});
 				if(originalAudioTrack.length==1){
-					if(currentAudioTrack['H8']['name']!=originalAudioTrack[0]['H8']['name']){
+					if(currentAudioTrack[trackMainDetails]['name']!=originalAudioTrack[0][trackMainDetails]['name']){
 						console.log('Shifting to original audio track');
 						if(player.setAudioTrack(originalAudioTrack[0])){
 							player.playVideo();
@@ -45,12 +51,16 @@ function checkIsVideoLoaded(){
 			let availableAudioTracks=player.getAvailableAudioTracks();
 			if(availableAudioTracks.length>1){
 				let currentAudioTrack=player.getAudioTrack();
-				console.log('current Audio', currentAudioTrack);
 				let originalAudioTrack=availableAudioTracks.filter(track=>{
-					return track['H8']['name'].toLowerCase().includes('original')
+					for(let k in track){
+						if(typeof track[k]==='object' && (track[k]['name']!=null && track[k]['name']!=undefined)){
+							trackMainDetails=k;
+							return track[k]['name'].toLowerCase().includes('original');
+						}
+					}
 				});
 				if(originalAudioTrack.length==1){
-					if(currentAudioTrack['H8']['name']!=originalAudioTrack[0]['H8']['name']){
+					if(currentAudioTrack[trackMainDetails]['name']!=originalAudioTrack[0][trackMainDetails]['name']){
 						console.log('Shifting to original audio track');
 						if(player.setAudioTrack(originalAudioTrack[0])){
 							player.playVideo();
