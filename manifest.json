@@ -4,14 +4,14 @@
   "version": "1.0",
   "description": "This is a browser extension specially for youtube, where for some videos and shorts the auto dubbed is being played as default, this extesnions make sures to play the original audio track as default.",
   "permissions": ["scripting", "storage"],
-  "host_permissions": ["https://www.youtube.com/*"],
+  "host_permissions": ["https://www.youtube.com/*","https://m.youtube.com/*"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Toggle Autodub"
   },
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/watch*","https://www.youtube.com/shorts*"],
+      "matches": ["https://www.youtube.com/watch*","https://www.youtube.com/shorts*","https://m.youtube.com/watch*","https://m.youtube.com/shorts*"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
@@ -19,7 +19,7 @@
   "web_accessible_resources": [
     {
       "resources": ["injected.js"],
-      "matches": ["https://www.youtube.com/*"]
+      "matches": ["https://www.youtube.com/*","https://m.youtube.com/*"]
     }
   ]
 }
