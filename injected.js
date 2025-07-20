@@ -21,7 +21,6 @@ function checkIsVideoLoaded(){
 			let availableAudioTracks=player.getAvailableAudioTracks();
 			if(availableAudioTracks.length>1){
 				let currentAudioTrack=player.getAudioTrack();
-				console.log('current Audio', currentAudioTrack);
 				let originalAudioTrack=availableAudioTracks.filter(track=>{
 					for(let k in track){
 						if(typeof track[k]==='object' && (track[k]['name']!=null && track[k]['name']!=undefined)){
@@ -32,7 +31,6 @@ function checkIsVideoLoaded(){
 				});
 				if(originalAudioTrack.length==1){
 					if(currentAudioTrack[trackMainDetails]['name']!=originalAudioTrack[0][trackMainDetails]['name']){
-						console.log('Shifting to original audio track');
 						if(player.setAudioTrack(originalAudioTrack[0])){
 							player.playVideo();
 						}
@@ -44,8 +42,6 @@ function checkIsVideoLoaded(){
 		}
 	}else if(type==='shorts'){
 		const player= document.getElementById('shorts-player');
-		console.log('player', JSON.stringify(player));
-		console.dir(player);
 		let videoData=player.getVideoData();
 		if(videoData!=null && videoData !=undefined){
 			let availableAudioTracks=player.getAvailableAudioTracks();
@@ -61,7 +57,6 @@ function checkIsVideoLoaded(){
 				});
 				if(originalAudioTrack.length==1){
 					if(currentAudioTrack[trackMainDetails]['name']!=originalAudioTrack[0][trackMainDetails]['name']){
-						console.log('Shifting to original audio track');
 						if(player.setAudioTrack(originalAudioTrack[0])){
 							player.playVideo();
 						}
@@ -76,5 +71,6 @@ function checkIsVideoLoaded(){
 }
 
 checkIsVideoLoaded();
+
 
 			
